@@ -1,18 +1,14 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import AdmobAppopen from 'react-native-admob-appopen';
+import useAppOpenAds from 'react-native-admob-appopen';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    AdmobAppopen.multiply(3, 7).then(setResult);
-  }, []);
+  useAppOpenAds('ca-app-pub-3940256099942544/3419835294');
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>:)</Text>
     </View>
   );
 }
