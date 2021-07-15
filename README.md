@@ -1,11 +1,13 @@
 # react-native-admob-appopen
 
-React Native AppOpen Format
+React Native AppOpen Format (Android Only)
+
+[App Open Ads](https://developers.google.com/admob/android/app-open-ads)
 
 ## Installation
 
 ```sh
-npm install react-native-admob-appopen
+yarn add react-native-admob-appopen
 ```
 
 ## Usage
@@ -15,7 +17,7 @@ import AdmobAppopen from "react-native-admob-appopen";
 
 // ...
 
-const result = await AdmobAppopen.multiply(3, 7);
+AdmobAppOpen.prepareAppOpenAd('ad-unit-id');// ex: ca-app-pub-3940256099942544/3419835294
 ```
 
 ## Contributing
