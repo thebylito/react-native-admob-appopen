@@ -10,8 +10,7 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import com.reactnativeadmobappopen.AdmobAppopenPackage;
-import com.reactnativeadmobappopen.AppOpenManager;
+import com.reactnativeadmobappopen.AdmobAppOpenPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -28,7 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for AdmobAppopenExample:
           // packages.add(new MyReactNativePackage());
-          packages.add(new AdmobAppopenPackage());
+          packages.add(new AdmobAppOpenPackage());
           return packages;
         }
 

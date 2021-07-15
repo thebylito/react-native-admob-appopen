@@ -1,10 +1,12 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import useAppOpenAds from 'react-native-admob-appopen';
+import AdmobAppOpen from 'react-native-admob-appopen';
 
 export default function App() {
-  useAppOpenAds('ca-app-pub-3940256099942544/3419835294');
+  React.useEffect(() => {
+    AdmobAppOpen.prepareAppOpenAd('ca-app-pub-3940256099942544/3419835294');
+  }, []);
 
   return (
     <View style={styles.container}>

@@ -6,6 +6,7 @@ import static androidx.lifecycle.Lifecycle.Event.ON_START;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -28,7 +29,7 @@ import java.util.Date;
 /**
  * Prefetches App Open Ads.
  */
-public class AppOpenManager implements Application.ActivityLifecycleCallbacks {
+public class AppOpenManager implements LifecycleObserver, Application.ActivityLifecycleCallbacks {
   private Activity currentActivity;
 
   private static final String LOG_TAG = "AppOpenManager";
@@ -41,9 +42,21 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks {
 
   public void setAdUnitId(String adUnitId) {
     this.AD_UNIT_ID = adUnitId;
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+      this.myApplication.getCurrentActivity().registerActivityLifecycleCallbacks(this);
+    }
+    ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     this.fetchAd();
   }
 
+  /**
+   * LifecycleObserver methods
+   */
+  @OnLifecycleEvent(ON_START)
+  public void onStart() {
+    showAdIfAvailable();
+    Log.d(LOG_TAG, "onStart");
+  }
 
   /**
    * ActivityLifecycleCallback methods
@@ -84,8 +97,6 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks {
    */
   public AppOpenManager(ReactApplicationContext myApplication) {
     this.myApplication = myApplication;
-    //this.myApplication.
-
   }
 
   /**
